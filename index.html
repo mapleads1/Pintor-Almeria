@@ -239,7 +239,40 @@
     .zona-item{background:var(--off);border:1px solid var(--muted);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:10px;border-left:3px solid transparent;transition:all var(--t)}
     .zona-item:hover{border-left-color:var(--or);background:var(--wh);box-shadow:0 4px 16px rgba(0,0,0,.07)}
     .zona-item .zi-name{font-size:.9rem;font-weight:600;color:var(--n)}
-    .zona-mapa{margin-top:28px;border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+    .zona-mapa{margin-top:28px;border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);background:var(--wh);border:1px solid var(--muted)}
+    .zona-map-static{position:relative;min-height:320px;padding:28px;background:
+      radial-gradient(circle at 18% 22%, rgba(58,158,200,.18) 0 18px, transparent 19px),
+      radial-gradient(circle at 66% 28%, rgba(58,158,200,.16) 0 14px, transparent 15px),
+      radial-gradient(circle at 58% 66%, rgba(58,158,200,.18) 0 16px, transparent 17px),
+      radial-gradient(circle at 30% 72%, rgba(58,158,200,.16) 0 12px, transparent 13px),
+      linear-gradient(135deg, #f9f8f4 0%, #f0eee8 100%);
+      display:flex;align-items:flex-end}
+    .zona-map-static::before{content:'';position:absolute;inset:16px;border-radius:16px;background:
+      linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7)),
+      linear-gradient(90deg, rgba(58,158,200,.08) 1px, transparent 1px),
+      linear-gradient(rgba(58,158,200,.08) 1px, transparent 1px);
+      background-size:auto, 52px 52px, 52px 52px;
+      background-position:0 0, 0 0, 0 0;
+      border:1px solid rgba(58,158,200,.12)}
+    .zona-map-overlay{position:relative;z-index:1;width:100%;display:grid;gap:18px}
+    .zona-map-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .zona-map-kicker{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--or)}
+    .zona-map-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;line-height:1;color:var(--n);margin-top:6px}
+    .zona-map-copy{max-width:440px;font-size:.9rem;line-height:1.7;color:var(--txt-m)}
+    .zona-map-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(58,158,200,.1);border:1px solid rgba(58,158,200,.18);font-size:.76rem;font-weight:700;color:var(--or);white-space:nowrap}
+    .zona-map-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--or)}
+    .zona-map-pins{position:relative;min-height:120px}
+    .zona-map-pin{position:absolute;display:flex;flex-direction:column;align-items:center;gap:6px;transform:translate(-50%,-50%)}
+    .zona-map-pin i{display:block;width:18px;height:18px;border-radius:50% 50% 50% 0;background:var(--or);transform:rotate(-45deg);box-shadow:0 6px 16px rgba(58,158,200,.28)}
+    .zona-map-pin i::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#fff}
+    .zona-map-pin span{background:rgba(255,255,255,.96);border:1px solid rgba(58,158,200,.12);border-radius:999px;padding:5px 10px;font-size:.72rem;font-weight:700;color:var(--n);box-shadow:0 8px 20px rgba(0,0,0,.06);white-space:nowrap}
+    .zona-map-pin.p1{top:24%;left:20%}
+    .zona-map-pin.p2{top:34%;left:70%}
+    .zona-map-pin.p3{top:56%;left:58%}
+    .zona-map-pin.p4{top:72%;left:32%}
+    .zona-map-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn-map{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;background:var(--n);color:#fff;border-radius:2px;font-size:.9rem;font-weight:700;transition:background var(--t),transform var(--t)}
+    .btn-map:hover{background:var(--or);transform:translateY(-1px)}
     .zona-note{text-align:center;margin-top:20px;font-size:.8rem;color:var(--txt-l)}
     .zona-note strong{color:var(--or);font-weight:600}
 
@@ -309,6 +342,7 @@
       .hero-actions .btn-primary,.hero-actions .btn-ghost{width:fit-content;justify-content:flex-start}
       .hero-stats{grid-template-columns:repeat(3,1fr)}
       .sv-grid{grid-template-columns:repeat(2,1fr)}
+      .zona-map-static{padding:36px}
       .fg-row{grid-template-columns:1fr 1fr}
       .tipo-opts{grid-template-columns:repeat(4,1fr)}
       .gal-grid{grid-template-columns:repeat(3,1fr)}
@@ -704,8 +738,26 @@
         <p class="zona-note">¿Tu municipio no aparece? <strong>Llámanos</strong> — probablemente también cubrimos tu zona.</p>
 
         <div class="zona-mapa">
-          <div style="overflow:hidden;height:320px;">
-            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1gSBMYhzaEsFUSwgn0qo8ZdABiMMgpSk&ehbc=2E312F&noprof=1" style="width:100%;height:375px;border:0;display:block;margin-top:-55px;" loading="lazy" title="Zona de trabajo Pinturas Daniel — Almería y provincia"></iframe>
+          <div class="zona-map-static">
+            <div class="zona-map-overlay">
+              <div class="zona-map-top">
+                <div>
+                  <div class="zona-map-kicker">Vista previa estática</div>
+                  <div class="zona-map-title">Cobertura en Almería y provincia</div>
+                </div>
+                <div class="zona-map-badge">Sin permisos ni ventanas extra</div>
+              </div>
+              <p class="zona-map-copy">Mostramos una previsualización estática para que en móvil no aparezcan avisos de permisos. Si quieres navegar o abrir rutas, usa el botón de Google Maps.</p>
+              <div class="zona-map-pins" aria-hidden="true">
+                <div class="zona-map-pin p1"><i></i><span>Roquetas</span></div>
+                <div class="zona-map-pin p2"><i></i><span>Vera</span></div>
+                <div class="zona-map-pin p3"><i></i><span>Almería</span></div>
+                <div class="zona-map-pin p4"><i></i><span>Adra</span></div>
+              </div>
+              <div class="zona-map-actions">
+                <a href="https://www.google.com/maps/d/u/0/viewer?mid=1gSBMYhzaEsFUSwgn0qo8ZdABiMMgpSk&ehbc=2E312F" class="btn-map" target="_blank" rel="noopener noreferrer">Abrir en Google Maps →</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
